@@ -1,0 +1,18 @@
+
+  <div class="modal-content" style="overflow-y: hidden;">
+    <div class="modal-header w-100 pt-1 mb-5 text-right">
+      <h3 class="modal-title">ZayShop</h3>
+      <button type="button" class="btn-close" aria-label="Close" (click)="modalRef.close()"></button>
+    </div>
+      <form action="" method="get" class="modal-body border-0 p-0">
+        <div style="width: 60%; margin-left: 260px; margin-top: 50px;" class="input-group mb-2">
+            <input type="text" class="form-control" id="inputModalSearch" name="q" placeholder="Search ...">
+            <button type="submit" class="input-group-text bg-success text-light">
+                <i class="fa fa-fw fa-search text-white"></i>
+            </button>
+        </div>
+    </form>
+    <div style="margin-top: 380px;" class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="modalRef.close()">Close</button>
+    </div>
+  </div>

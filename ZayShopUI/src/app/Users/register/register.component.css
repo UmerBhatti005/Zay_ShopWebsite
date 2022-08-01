@@ -1,0 +1,30 @@
+:host {
+    display: flex;
+    justify-content: center;
+    margin: 100px 0px;
+  }
+  mat-card {
+    max-width: 600px;
+  }
+  mat-card mat-card-title, mat-card mat-card-content {
+    display: flex;
+    justify-content: center;
+  }
+  mat-card mat-card-title form .mat-form-field, mat-card mat-card-content form .mat-form-field {
+    width: 100%;
+    min-width: 300px;
+  }
+  mat-card mat-card-title form .error, mat-card mat-card-content form .error {
+    padding: 16px;
+    width: 300px;
+    color: white;
+    background-color: red;
+  }
+  mat-card mat-card-title form .button, mat-card mat-card-content form .button {
+    display: flex;
+    justify-content: flex-end;
+  }
+  .mat-radio-button ~ .mat-radio-button {
+    margin-left: 16px;
+  }
+  

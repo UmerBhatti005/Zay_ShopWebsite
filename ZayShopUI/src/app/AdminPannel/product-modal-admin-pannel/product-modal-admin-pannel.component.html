@@ -1,0 +1,131 @@
+<div class="modal-content">
+    <div class="modal-header  bg-primary text-white">
+        <h5 class="modal-title" id="exampleModalLabel"><i class="fa fa-edit"></i> Add New Product</h5>
+        <button type="button" class="btn-close" aria-label="Close" (click)="dialogRef.close(data)"></button>
+    </div>
+    <div class="modal-body">
+        <form action="">
+            <div class="card">
+                <div class="card-header">
+                    <ul class="nav nav-tabs card-header-tabs" role="tablist">
+                        <li class="nav-item"  role="presentation"> <button class="nav-link active" data-bs-toggle="tab"
+                                data-bs-target="#general" type="button" role="tab">General</button>
+                        </li>
+                        <li class="nav-item" role="presentation"> <button class="nav-link" data-bs-toggle="tab"
+                                data-bs-target="#description" type="button" role="tab">Details</button></li>
+                    </ul>
+                </div>
+                <div class="card-body">
+                    <div class="tab-content" style="min-height:360px">
+                        <div id="general" class="tab-pane active mytab-pane">
+                            <div class="row mb-4">
+                                <div class="col">
+                                    <div class="input-group">
+                                        <label class="input-group-text" for="ddlcategories"><i
+                                                class="fa fa-tags"></i></label>
+                                        <select id="ddlcategories" class="form-control" 
+                                        name="parentId">
+                                            <!-- <option value="0">- Category -</option> -->
+                                            <option value="0">{{product.categories != null ? product.categories.parent.name :''}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="input-group">
+                                        <label class="input-group-text" for="ddlsubcategories"><i
+                                                class="fa fa-tags"></i></label>
+                                        <select id="ddlsubcategories" class="form-control"
+                                          name="product.categories">
+                                            <!-- <option [value]="0" [disabled]="true" [selected]="true == true">- SubCategory -</option> -->
+                                            <option value="0">{{product.categories ? product.categories.name : ''}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-4">
+                                <div class="col">
+                                    <div class="input-group">
+                                        <label class="input-group-text" for="name"><i class="fa fa-user"></i></label>
+                                        <input type="text" name="product.name" id="name" [value]="product !=null ? product.name: ''"
+                                            class="form-control" placeholder="Name">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-4">
+                                <div class="col">
+                                    <div class="input-group">
+                                        <label class="input-group-text" for="Rating"><i class="fa fa-tags"></i></label>
+                                        <select id="Rating" name="rank"  class="form-control">
+                                            <option value="0">{{product.productImages ? product.productImages[0].rank : ''}}</option>
+                                            <!-- <option [value]="i+1" *ngFor="let a of [].constructor(5); let i=index;">
+                                                {{i+1}}</option> -->
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="input-group">
+                                        <label class="input-group-text" for="price"><b style="font-weight: 900;">Rs.</b></label>
+                                        <input type="text" name="product.price" id="price" [value]="product.price != null ? product.price : ''"
+                                            class="form-control" placeholder="Price">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-4">
+                                <div class="col">
+                                    <div class="input-group">
+                                        <label class="input-group-text" for="color"><i class="fa fa-tags"></i></label>
+                                            <select class="form-control" name="colors" id="">
+                                                <!-- <option value="0">Select a Colors</option> -->
+                                                <option value="0">{{product.colors != null ? product.colors.name : ''}}</option>
+                                            </select>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="input-group">
+                                        <label class="input-group-text" for="ProductSizes"><i
+                                                class="fa fa-tags"></i></label>
+                                            <select id="" class="form-control" name="productSizes">
+                                                <!-- <option value="0" disabled>Select a Size</option> -->
+                                                <option value="0">{{product.productSizes ? product.productSizes.name : ''}}</option>
+                                            </select>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <div class="col-5">
+                                        <input id="fileimages" name="pics" type="file" name="pics"
+                                        accept=".jpg, .png, .jpeg" multiple="multiple" />
+                                    </div>
+                                    <div class="col-7">
+                                        <div id="imgthumbs" class="row">
+                                            <img [src]="product.productImages ? ('data:image/jpeg;base64,'+product.productImages[0].pics) : ''" style="width: 100px !important; height: 100px !important;"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="description" class="tab-pane mytab-pane">
+                            <div class="input-group">
+                            <textarea id="txtdescription" name="product.description"
+                                class="form-control" rows="10" placeholder="Product Details"></textarea>
+                                </div>
+                                <div class="input-group mt-4">
+                                        <label class="input-group-text" for="price"><b style="font-weight: 900;">Q</b></label>
+                                        <input type="text" name="quantity" id="quantity"
+                                            class="form-control" placeholder="Available Quantity" [value]="product.quantity">
+                                    </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group" style="margin-top:15px;">
+                <button id="btnadd" type="button" class="btn btn-primary">
+                    <i class="fa fa-arrow-circle-right"></i> Add Product
+                </button>
+            </div>
+        </form>
+
+    </div>
+</div>

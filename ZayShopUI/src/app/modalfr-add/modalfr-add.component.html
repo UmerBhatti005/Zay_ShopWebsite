@@ -1,0 +1,148 @@
+<div class="modal-content">
+    <div class="modal-header  bg-primary text-white">
+        <h5 class="modal-title" id="exampleModalLabel"><i class="fa fa-edit"></i> Add New Product</h5>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modalRef.close()"></button>
+    </div>
+    <div class="modal-body">
+        <form (ngSubmit)="onsubmit()" >
+            <div class="card">
+                <div class="card-header">
+                    <ul class="nav nav-tabs card-header-tabs" role="tablist">
+                        <li class="nav-item"  role="presentation"> <button class="nav-link active" data-bs-toggle="tab"
+                                data-bs-target="#general" type="button" role="tab">General</button>
+                        </li>
+                        <li class="nav-item" role="presentation"> <button class="nav-link" data-bs-toggle="tab"
+                                data-bs-target="#description" type="button" role="tab">Details</button></li>
+                    </ul>
+                </div>
+                <div class="card-body">
+                    <div class="tab-content" style="min-height:360px">
+                        <div id="general" class="tab-pane active mytab-pane">
+                            <div class="row mb-4">
+                                <div class="col">
+                                    <div class="input-group">
+                                        <label class="input-group-text" for="ddlcategories"><i
+                                                class="fa fa-tags"></i></label>
+                                        <select id="ddlcategories" class="form-control" 
+                                        name="parentId" (change)="onChange($event)">
+                                            <option [value]="0" [selected]="true" [disabled]="true">- Category -</option>
+                                            <option [value]="categories != null ? categories.id : ''"
+                                                *ngFor="let categories of category">{{categories.name != null ?
+                                                categories.name : ''}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="input-group">
+                                        <label class="input-group-text" for="ddlsubcategories"><i
+                                                class="fa fa-tags"></i></label>
+                                        <select id="ddlsubcategories" class="form-control"
+                                            [(ngModel)]="SubCat_Par" name="product.categories">
+                                            <option [value]="0" [disabled]="true" [selected]="true == true">- SubCategory -</option>
+                                            <option [value]="SubCategory != null ? SubCategory.id : ''"
+                                                *ngFor="let SubCategory of SubCategory">{{SubCategory.parent != null ?
+                                                SubCategory.name : ''}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-4">
+                                <div class="col">
+                                    <div class="input-group">
+                                        <label class="input-group-text" for="name"><i class="fa fa-user"></i></label>
+                                        <input type="text" [(ngModel)]="product.name" name="product.name" id="name"
+                                            class="form-control" placeholder="Name">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-4">
+                                <div class="col">
+                                    <div class="input-group">
+                                        <label class="input-group-text" for="Rating"><i class="fa fa-tags"></i></label>
+                                        <select id="Rating" [(ngModel)]="rank" name="rank"  class="form-control">
+                                            <option value="0" [disabled]="true">- Rate the Thing -</option>
+                                            <option [value]="i+1" *ngFor="let a of [].constructor(5); let i=index;">
+                                                {{i+1}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="input-group">
+                                        <label class="input-group-text" for="price"><b style="font-weight: 900;">Rs.</b></label>
+                                        <input type="text" [(ngModel)]="product.price" name="product.price" id="price"
+                                            class="form-control" placeholder="Price">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-4">
+                                <div class="col">
+                                    <div class="input-group">
+                                        <label class="input-group-text" for="color"><i class="fa fa-tags"></i></label>
+                                        <!-- <input type="text" id="color" [(ngModel)]="colors" name="colors"
+                                            class="form-control" placeholder="Colors"> -->
+                                            <select class="form-control"  [(ngModel)]="colors" name="colors" id="">
+                                                <option value="0">Select a Colors</option>
+                                                <option *ngFor="let colorses of colorses" [value]="colorses != null ? colorses.id : '' ">{{colorses != null ? colorses.name : '' }}</option>
+                                            </select>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="input-group">
+                                        <label class="input-group-text" for="ProductSizes"><i
+                                                class="fa fa-tags"></i></label>
+                                        <!-- <input type="text" [(ngModel)]="product.productSizes"
+                                            name="productSizes" id="DateTime" class="form-control"> -->
+                                            <select id="" class="form-control" [(ngModel)]="productSizes" name="productSizes">
+                                                <option value="0" disabled>Select a Size</option>
+                                                <option *ngFor="let sizes of sizes" [value]="sizes != null ? sizes.id: ''">{{sizes != null ? sizes.name: ''}}</option>
+                                                
+                                            </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Radio button for status will be loaded from JS -->
+
+                            <!-- <div class="form-check form-check-inline mb-4" *ngFor="let rdbtn of statuss">
+                                <input class="form-check-input" type="radio" [(ngModel)]="product.statuses.id"
+                                    name="product.statuses.id" id="flexRadioDefault1"
+                                    [value]="rdbtn.id ? rdbtn.id : ''" />
+                                <label class="form-check-label" for="flexRadioDefault1"> {{rdbtn.name}} </label>
+                            </div> -->
+                            
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <div class="col-5">
+                                        <input id="fileimages" name="pics" type="file" name="pics"
+                                        accept=".jpg, .png, .jpeg" multiple="multiple"
+                                        (change)="onFileSelected($event)" />
+                                    </div>
+                                    <div class="col-7">
+                                        <div id="imgthumbs" class="row">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="description" class="tab-pane mytab-pane">
+                            <div class="input-group">
+                            <textarea id="txtdescription" [(ngModel)]="product.description" name="product.description"
+                                class="form-control" rows="10" placeholder="Product Details"></textarea>
+                                </div>
+                                <div class="input-group mt-4">
+                                        <label class="input-group-text" for="price"><b style="font-weight: 900;">Rs.</b></label>
+                                        <input type="text" [(ngModel)]="product.quantity" name="quantity" id="quantity"
+                                            class="form-control" placeholder="Available Quantity">
+                                    </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group" style="margin-top:15px;">
+                <button id="btnadd" type="submit" class="btn btn-primary">
+                    <i class="fa fa-arrow-circle-right"></i> Add Product
+                </button>
+            </div>
+        </form>
+
+    </div>
+</div>

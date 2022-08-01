@@ -1,0 +1,37 @@
+<div class="container">
+    <div class="card m-5 p-3">
+        <div class="card-body">
+            <table class="table table-bordered table-striped table-hover" datatable [dtOptions]="dtOptions"
+                [dtTrigger]="dtTrigger">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Category</th>
+                        <th>Status</th>
+                        <th>Image</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let data of products">
+                        <td>{{data.id}}</td>
+                        <td>{{data.name}}</td>
+                        <td>{{data.categories.name}}</td>
+                        <td class="w-25"><input class="form-control form-control-sm" [value] = "data?.statuses != null ? data.statuses.id : ''" #status/></td>
+                        <td><img [src]="data.productImages[0] != null ? ('data:image/jpeg;base64,'+data.productImages[0].pics) : ''"
+                                class="img-thumbnail" height="70" width="70"> </td>
+                        <td>
+                            <button class="btn btn-outline-success" (click)="UpdateProduct(data, status.value)"><i
+                                    class="fa fa-edit"></i></button>
+                            <button class="btn btn-outline-danger mx-1"><i class="fa fa-trash"></i></button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="medium" type="ball-triangle-path" [fullScreen]="true">
+    <p style="font-size: 20px; color: white">Please Wait. </p>
+</ngx-spinner>
